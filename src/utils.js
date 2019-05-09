@@ -1,8 +1,10 @@
 const shell = require('shelljs');
 const parseGitUrl = require('git-url-parse');
 
-module.exports.exec = function exec(command) {
-  console.log(`   executing: ${command}`);
+module.exports.exec = function exec(command, quiet = false) {
+  if (!quiet) {
+    console.log(`   executing: ${command}`);
+  }
 
   const options = { silent: true };
   const ref = shell.exec(command, options);
@@ -22,4 +24,12 @@ module.exports.getGHPagesUrl = function getGHPagesUrl(ghUrl) {
   return parsedUrl.resource === 'github.com'
     ? `https://${parsedUrl.owner}.github.io/${parsedUrl.name}/`
     : `https://${parsedUrl.resource}/pages/${parsedUrl.full_name}/`;
+};
+
+module.exports.getCurrentBranchName = function getCurrentBranchName() {
+  try {
+    return this.exec('git rev-parse --abbrev-ref HEAD', true);
+  } catch (e) {
+    return 'master';
+  }
 };

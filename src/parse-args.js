@@ -82,8 +82,7 @@ const argv = yargs
     type: 'string'
   })
   .option('deploy-inside-branch-dir', {
-    desc:
-      'Deploy storybook inside branch name directory passed by --source-branch switch',
+    desc: 'Deploy storybook inside branch name directory',
     type: 'boolean'
   }).argv;
 
