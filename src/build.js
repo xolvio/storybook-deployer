@@ -10,7 +10,7 @@ function buildStorybook(currentPackage, outputDirectory, npmScriptName) {
 
   // clear and re-create the out directory
   shell.rm('-rf', outputDirectory);
-  shell.mkdir(outputDirectory);
+  shell.mkdir('-p', outputDirectory);
 
   if (currentPackage.scripts[npmScriptName]) {
     publishUtils.exec(`npm run ${npmScriptName} -- -o ${outputDirectory}`);

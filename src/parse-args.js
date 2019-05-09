@@ -80,6 +80,11 @@ const argv = yargs
   .option('bucket-path', {
     desc: 'AWS bucket path to use for publishing',
     type: 'string'
+  })
+  .option('deploy-inside-branch-dir', {
+    desc:
+      'Deploy storybook inside branch name directory passed by --source-branch switch',
+    type: 'boolean'
   }).argv;
 
 module.exports = packageJson => {
@@ -109,6 +114,7 @@ module.exports = packageJson => {
     // AWS Variables
     AWS_PROFILE: argv['aws-profile'] || 'default',
     BUCKET_PATH: argv['bucket-path'],
-    S3_PATH: 's3://' + argv['bucket-path']
+    S3_PATH: 's3://' + argv['bucket-path'],
+    S3_DEPLOY_TO_BRANCH_DIR: argv['deploy-inside-branch-dir'] || false
   };
 };

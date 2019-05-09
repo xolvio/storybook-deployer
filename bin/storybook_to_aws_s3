@@ -15,9 +15,14 @@ if (!args.BUCKET_PATH) {
   process.exit(-1);
 }
 
+let outputDir = args.OUTPUT_DIR;
+if (args.S3_DEPLOY_TO_BRANCH_DIR) {
+  outputDir += `/${args.SOURCE_BRANCH}`;
+}
+
 build(
   args.SKIP_BUILD,
-  args.OUTPUT_DIR,
+  outputDir,
   packageJson,
   args.PACKAGES_DIRECTORY,
   args.NPM_SCRIPT,
