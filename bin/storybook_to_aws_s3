@@ -16,6 +16,9 @@ if (!args.BUCKET_PATH) {
 }
 
 let outputDir = args.OUTPUT_DIR;
+if (args.S3_DEPLOY_TO_REPO_DIR) {
+  outputDir += `/${publishUtils.getCurrentRepoName()}`;
+}
 if (args.S3_DEPLOY_TO_BRANCH_DIR) {
   outputDir += `/${publishUtils.getCurrentBranchName()}`;
 }

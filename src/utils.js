@@ -33,3 +33,14 @@ module.exports.getCurrentBranchName = function getCurrentBranchName() {
     return 'master';
   }
 };
+
+module.exports.getCurrentRepoName = function getCurrentRepoName() {
+  try {
+    return this.exec(
+      'basename -s .git `git config --get remote.origin.url`',
+      true
+    );
+  } catch (e) {
+    return '';
+  }
+};

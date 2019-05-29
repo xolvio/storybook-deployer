@@ -85,6 +85,10 @@ const argv = yargs
     desc: 'Deploy storybook inside branch name directory',
     type: 'boolean'
   })
+  .option('deploy-inside-repo-dir', {
+    desc: 'Deploy storybook inside repository name directory',
+    type: 'boolean'
+  })
   .option('aws-s3-options', {
     desc: 'Extra options for AWS S3',
     type: 'string'
@@ -119,6 +123,7 @@ module.exports = packageJson => {
     BUCKET_PATH: argv['bucket-path'],
     S3_PATH: 's3://' + argv['bucket-path'],
     S3_DEPLOY_TO_BRANCH_DIR: argv['deploy-inside-branch-dir'] || false,
+    S3_DEPLOY_TO_REPO_DIR: argv['deploy-inside-repo-dir'] || false,
     S3_OPTIONS: argv['aws-s3-options'] || ''
   };
 };
